@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report 
+            id="report_cus_sup_report"
+            string="Account Statment Report"
+            model="account.statement.report" 
+            report_type="qweb-pdf"
+            file="gt_customer_account_statement.acc_statemnt_view" 
+            name="gt_customer_account_statement.cus_acc_report" 
+        />
+        
+<!-- >>>>>>>>>>>>>>>>>>>>>ACCOUNT STATEMENT SEND EMAIL<<<<<<<<<<<<<<<<<<<<<< -->
+
+        <report 
+            id="print_customer_statement_report"
+            string="Customer Statment"
+            model="res.partner" 
+            report_type="qweb-pdf"
+            file="gt_customer_account_statement.email_acc_statement" 
+            name="gt_customer_account_statement.mail_cus_acc_report" 
+        />
+        
+        <report 
+            id="print_supplier_statement_report"
+            string="Supplier Statment"
+            model="res.partner" 
+            report_type="qweb-pdf"
+            file="gt_customer_account_statement.email_acc_statement" 
+            name="gt_customer_account_statement.mail_sup_acc_report" 
+        />
+        
+<!-- >>>>>>>>>>>>>>>>>>>>>OVERDUE STATEMENT SEND EMAIL<<<<<<<<<<<<<<<<<<<<<< -->
+
+        <report 
+            id="print_customer_overdue_statement_report"
+            string="Customer Overdue Statment"
+            model="res.partner" 
+            report_type="qweb-pdf"
+            file="gt_customer_account_statement.email_overdue" 
+            name="gt_customer_account_statement.mail_cus_overdue_report" 
+        />
+        
+        <report 
+            id="print_supplier_overdue_statement_report"
+            string="Supplier Overdue Statment"
+            model="res.partner" 
+            report_type="qweb-pdf"
+            file="gt_customer_account_statement.email_overdue" 
+            name="gt_customer_account_statement.mail_sup_overdue_report" 
+        />
+
+    </data>
+</odoo>
