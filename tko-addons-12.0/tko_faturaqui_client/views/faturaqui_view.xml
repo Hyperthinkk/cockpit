@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="faturaqui_form" model="ir.ui.view">
+        <field name="name">faturaqui.form</field>
+        <field name="model">faturaqui</field>
+        <field name="arch" type="xml">
+            <form string="FaturAqui" create="false" delete="false">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="server_url"/>
+                            <field name="client_token"/>
+                            <field name="use_webservice"/>
+                        </group>
+                        <group>
+                            <field name="name"/>
+                            <field name="version"/>
+                            <field name="software_certificate_number"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_faturaqui" model="ir.actions.act_window">
+        <field name="name">FaturAqui</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">faturaqui</field>
+        <field name="view_id" ref="faturaqui_form"/>
+        <field name="res_id" ref="tko_faturaqui_client.faturaqui_main"/>
+    </record>
+
+    <record id="faturaqui_saft_form" model="ir.ui.view">
+        <field name="name">faturaqui.saft.form</field>
+        <field name="model">faturaqui.saft</field>
+        <field name="arch" type="xml">
+            <form string="FaturAqui SAF-T">
+                <header>
+                    <button name="generate_file" type="object" string="Generate File" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="year" required="1"/>
+                        <field name="month" attrs="{'invisible': [('type', '=', 'a')], 'required': [('type', '=', 'm')]}"/>
+                        <field name="name" invisible="1"/>
+                        <field name="type" invisible="1"/>
+                    </group>
+                    <group attrs="{'invisible': [('file', '=', False)]}">
+                        <field name="file" filename="filename"/>
+                        <field name="filename" invisible="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_faturaqui_saft_monthly" model="ir.actions.act_window">
+        <field name="name">FaturAqui File eFatura</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">faturaqui.saft</field>
+        <field name="view_id" ref="faturaqui_saft_form"/>
+        <field name="res_id" ref="tko_faturaqui_client.faturaqui_saft_monthly"/>
+    </record>
+    <record id="action_faturaqui_saft_annual" model="ir.actions.act_window">
+        <field name="name">FaturAqui File SAF-T</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">faturaqui.saft</field>
+        <field name="view_id" ref="faturaqui_saft_form"/>
+        <field name="res_id" ref="tko_faturaqui_client.faturaqui_saft_annual"/>
+    </record>
+
+    <menuitem id="menu_faturaqui" name="FaturAqui" parent="account.menu_finance_configuration" sequence="100"/>
+    <menuitem id="menu_action_faturaqui" name="Information" sequence="10"
+              action="action_faturaqui" parent="menu_faturaqui"/>
+    <menuitem id="menu_action_faturaqui_saft_monthly" name="Files eFatura" sequence="20"
+              action="action_faturaqui_saft_monthly" parent="menu_faturaqui"/>
+    <menuitem id="menu_action_faturaqui_saft_annual" name="Files SAF-T" sequence="30"
+              action="action_faturaqui_saft_annual" parent="menu_faturaqui"/>
+</odoo>

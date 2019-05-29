@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="_assets_primary_variables" inherit_id="web._assets_primary_variables">
+            <xpath expr="//link[last()]" position="after">
+                <link rel="stylesheet" type="text/scss" href="/mail/static/src/scss/variables.scss"/>
+            </xpath>
+        </template>
+
+        <template id="assets_backend" name="mail assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/tko_mail_smtp_per_user/static/src/js/mail_server.js"></script>
+
+            </xpath>
+        </template>
+
+
+
+    </data>
+</odoo>

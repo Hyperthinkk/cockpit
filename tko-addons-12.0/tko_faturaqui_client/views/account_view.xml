@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_account_journal_form" model="ir.ui.view">
+        <field name="name">account.journal.form</field>
+        <field name="model">account.journal</field>
+        <field name="inherit_id" ref="account.view_account_journal_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='type']" position="after">
+                <field name="at_type_out_invoice"
+                       attrs="{'invisible': [('type', '!=', 'sale')], 'required': [('type', '=', 'sale')]}"/>
+                <field name="at_origin"
+                       attrs="{'invisible': [('type', '!=', 'sale')], 'required': [('type', '=', 'sale')]}"/>
+            </xpath>
+            <xpath expr="//field[@name='refund_sequence']" position="after">
+                <field name="refund_code" attrs="{'invisible': [('type', '!=', 'sale')], 'required': [('type', '=', 'sale')]}"/>
+            </xpath>
+            <xpath expr="//field[@name='default_debit_account_id']" position="before">
+                <field name="series" attrs="{'invisible': [('type', '!=', 'sale')]}"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="account.action_account_journal_form" model="ir.actions.act_window">
+        <field name="domain">[('type', '!=', 'sale')]</field>
+        <field name="context">{'default_type': 'purchase'}</field>
+    </record>
+    <record id="view_account_invoice_series_tree" model="ir.ui.view">
+        <field name="name">account.invoice.series.tree</field>
+        <field name="model">account.journal</field>
+        <field name="priority">1</field>
+        <field name="arch" type="xml">
+            <tree string="Account Journal">
+                <field name='sequence' widget='handle'/>
+                <field name="name"/>
+                <field name="at_type_out_invoice"/>
+                <field name="at_origin"/>
+                <field name="type"/>
+                <field name="code"/>
+                <field name="series"/>
+                <field name="belongs_to_company" invisible="1"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </tree>
+        </field>
+    </record>
+    <record id="action_account_invoice_series" model="ir.actions.act_window">
+        <field name="name">Invoice Series</field>
+        <field name="res_model">account.journal</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('view_account_invoice_series_tree')}),
+            (0, 0, {'view_mode': 'kanban', 'view_id': ref('account.account_journal_view_kanban')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('account.view_account_journal_form')})]"/>
+        <field name="domain">[('type', '=', 'sale')]</field>
+        <field name="context">{'type': 'sale', 'default_type': 'sale'}</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to add a new invoice series.
+          </p>
+        </field>
+    </record>
+    <menuitem id="menu_action_account_invoice_series" action="action_account_invoice_series" sequence="200"
+              parent="account.account_account_menu" groups="account.group_account_manager"/>
+</odoo>

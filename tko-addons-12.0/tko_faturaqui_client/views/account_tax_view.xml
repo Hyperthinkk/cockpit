@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_tax_form" model="ir.ui.view">
+        <field name="name">account.tax.form</field>
+        <field name="model">account.tax</field>
+        <field name="inherit_id" ref="account.view_tax_form"/>
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//page[1]" position="inside">
+                    <group string="AT Fields" attrs="{'required': [('type_tax_use', '=', 'sale')]}">
+                        <field name="at_tax_type"/>
+                        <field name="at_tax_country_region"/>
+                        <field name="at_tax_code"/>
+                    </group>
+                </xpath>
+            </data>
+        </field>
+    </record>
+    <record id="account_tax_er_form" model="ir.ui.view">
+        <field name="name">account.tax.er.form</field>
+        <field name="model">account.tax.er</field>
+        <field name="arch" type="xml">
+            <form string="Tax Exemption Reasons">
+                <group>
+                    <field name="at_tax0_reason"/>
+                    <field name="at_tax0_code" invisible="1"/>
+                    <field name="name"/>
+                    <field name="tax_id" invisible="1"/>
+                </group>
+            </form>
+        </field>
+    </record>
+    <record id="account_tax_er_tree" model="ir.ui.view">
+        <field name="name">account.tax.er.tree</field>
+        <field name="model">account.tax.er</field>
+        <field name="arch" type="xml">
+            <tree string="Tax Exemption Reasons">
+                <field name="name"/>
+                <field name="at_tax0_code"/>
+                <field name="at_tax0_reason" invisible="1"/>
+                <field name="tax_id" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+    <record id="action_account_tax_er" model="ir.actions.act_window">
+        <field name="name">Tax Exemption Reasons</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">account.tax.er</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_account_tax_er" parent="account.account_account_menu"
+              action="action_account_tax_er" name="Tax Exemption Reasons" sequence="2"/>
+</odoo>

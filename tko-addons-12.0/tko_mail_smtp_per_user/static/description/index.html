@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2 class="oe_slogan">SMTP Server Per User</h2><br/>
+            <h3 class="oe_slogan" style="color:red">Features</h3>
+            <ul>
+                <li>
+                    <h4>Allows every user to send mail with their own separate outgoing mail server</h4>
+                </li>
+                <li>
+                    <h4>Replaces relay email adderss eg:&nbsp;&lt;<a
+                            href="mailto:bounce%2B58-crm.lead-24@domain.com" target="_blank"
+                            rel="noopener"><span class="il">bounce</span>+58-crm.lead-24@
+                        <wbr/>
+                        domain.com</a>&gt; to sender's address which is not blocked by mail servers.
+                    </h4>
+                </li>
+                <li>
+                    <h4>Fixes email routing. First it checks the parent messages of incoming email, if not found then
+                        falls back on the alias.&nbsp; unlike odoo standard first it falls back on the alias ignoring
+                        the parent message</h4>
+                </li>
+                <li>
+                    <h4>On failing authentication on Incoming/Outgoing mail server.
+                        It creates activity to configure incoming outgoing server from a single form</h4>
+                </li>
+            </ul>
+            <h3 class="oe_slogan">Configure Odoo to use outgoing email server by user.</h3><br/>
+        </div>
+        <div class="oe_span6">
+            <div class="oe_row_img oe_centered">
+                <img class="oe_picture oe_screenshot" src="user_alias.png">
+            </div>
+        </div>
+        <div class="oe_span6">
+            <p class="oe_mt32">
+                Create a regular user, don't forget to set email alias equal to email server.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span6">
+            <div class="oe_row_img oe_centered">
+                <img class="oe_picture oe_screenshot" src="outgoing_mail_server.png">
+                <div class="oe_demo_footer oe_centeralign">Outgoing Mail Server</div>
+            </div>
+        </div>
+        <div class="oe_span6">
+            <p class="oe_mt32">
+                Create outgoing mail server same as user alias. While sending an email it will auto-detect correct
+                outgoing mail server. If none of them matches then it would use the 1st one found with the lowest
+                priority
+            </p>
+        </div>
+
+    </div>
+</section>
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span6">
+            <div class="oe_row_img oe_centered">
+                <img class="oe_picture oe_screenshot" src="mail_server_config.png">
+                <div class="oe_demo_footer oe_centeralign">Mail Server Configuration</div>
+            </div>
+        </div>
+        <div class="oe_span6">
+            <p class="oe_mt32">
+                On failing Incoming/Outgoing mail. User gets notification to update his own password for
+                incoming/outgoing mail server
+            </p>
+        </div>
+    </div>
+</section>
+
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h3 class="oe_slogan" style="font-size: 20px;">Developed for Odoo by <a href="http://www.tkobr.com">Thinkopen
+                Solutions Brasil</a></h3>
+            <h3 class="oe_slogan" style="font-size: 18px;"><strong>You Can't Even Imagine...</strong></h3>
+            <p>
+            <h3 class="oe_slogan" style="font-size: 15px;">support at <a
+                    href="emailto:sac@tkobr.com?subject=tko_web_sessions_management">sac@tkobr.com</a></h3>
+            </p>
+        </div>
+    </div>
+</section>
+

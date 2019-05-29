@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_tax_er_invoice,account.tax.er,model_account_tax_er,account.group_account_invoice,1,0,0,0
+access_account_tax_er_manager,account.tax.er,model_account_tax_er,account.group_account_manager,1,1,1,1
+access_account_tax_er_user,account.tax.er,model_account_tax_er,account.group_account_user,1,1,1,1
+access_faturaqui_invoice,faturaqui,model_faturaqui,account.group_account_invoice,1,0,0,0
+access_faturaqui_manager,faturaqui,model_faturaqui,account.group_account_manager,1,0,0,0
+access_faturaqui_user,faturaqui,model_faturaqui,account.group_account_user,1,1,0,0
+access_faturaqui_saft_invoice,faturaqui.saft,model_faturaqui_saft,account.group_account_invoice,1,1,0,0
