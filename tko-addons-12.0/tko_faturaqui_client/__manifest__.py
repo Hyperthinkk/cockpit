@@ -1,0 +1,47 @@
+# © 2019 TKOpen <https://tkopen.com>
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+
+{
+    'name': 'FaturAqui Client',
+    'summary': '',
+    # 'description': 'Generate E-invoices at AT with TKOPEN api',
+    'author': 'TKOpen',
+    'category': 'Accounting',
+    'license': 'LGPL-3',
+    'website': 'https://tkopen.com',
+    'version': '12.0.0.0.0',
+    'sequence': 1,
+    'depends': [
+        'account',
+        'account_cancel',
+        'l10n_pt',
+        'tko_first_login_change_password',
+    ],
+    'data': [
+        'wizard/account_invoice_cancel_view.xml',
+        'wizard/account_invoice_refund_view.xml',
+        'data/account_journal_data.xml',
+        'data/account_tax_data.xml',
+        'data/faturaqui_data.xml',
+        'security/ir.model.access.csv',
+        'views/account_invoice_view.xml',
+        'views/account_tax_view.xml',
+        'views/account_view.xml',
+        'views/faturaqui_view.xml',
+        'views/product_view.xml',
+        'views/res_partner_view.xml',
+    ],
+    'init_xml': [],
+    'update_xml': [],
+    'css': [],
+    'demo_xml': [],
+    'test': [],
+    'external_dependencies': {
+        'python': [],
+        'bin': [],
+    },
+    'images': ['static/description/icon.png'],
+    'application': True,
+    'installable': True,
+    'auto_install': False,
+}
