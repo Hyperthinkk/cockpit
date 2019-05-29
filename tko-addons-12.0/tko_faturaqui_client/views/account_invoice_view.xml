@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="invoice_form" model="ir.ui.view">
+        <field name="name">account.invoice.form</field>
+        <field name="model">account.invoice</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_invoice_sent'][1]" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_invoice_sent'][2]" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//button[@name='preview_invoice']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_invoice_draft']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//button[@name='%(account.action_account_invoice_payment)d']" position="before">
+                <button name="action_invoice_print" type="object" states="open,paid,cancel" string="Print" groups="account.group_account_invoice"/>
+            </xpath>
+            <xpath expr="//button[@name='action_invoice_open']" position="replace">
+                <button name="action_validate_and_print" type="object" states="draft" string="Validate" class="oe_highlight o_invoice_validate" groups="account.group_account_invoice"/>
+            </xpath>
+            <xpath expr="//button[@name='%(account.action_account_invoice_refund)d']" position="attributes">
+                <attribute name="groups">account.group_account_user</attribute>
+            </xpath>
+            <xpath expr="//h1[hasclass('mt0')]" position="replace">
+                <h1 class="mt0">
+                    <div>
+                        <div class="oe_form_box_info oe_text_center">
+                            <!--bg-info -->
+                            <label for="number" string="Draft. This is not an invoice" class="oe_form_box_info oe_text_center"
+                                   attrs="{'invisible': ['|',('state','not in',('draft',)), ('type','!=','out_invoice')]}"/>
+                            <label for="number" string="Draft. This is not a credit note" class="oe_form_box_info oe_text_center"
+                                   attrs="{'invisible': ['|',('state','not in',('draft',)), ('type','!=','out_refund')]}"/>
+                        </div>
+                        <field name="number" readonly="1" class="oe_inline" attrs="{'invisible': [('state','in',('draft',))]}"/>
+                    </div>
+                </h1>
+            </xpath>
+            <xpath expr="//tree/field[@name='invoice_line_tax_ids']" position="after">
+                <field name="tax0_reason_id"/>
+            </xpath>
+            <xpath expr="//page[@name='other_info']" position="inside">
+                <group string="AT Fields" name="at_fields">
+                    <field name="at_invoice_type"/>
+                    <field name="at_payment_mechanism"/>
+                    <field name="at_self_billing_indicator"/>
+                    <field name="at_cash_vat_scheme_indicator"/>
+                    <field name="at_third_parties_billing_indicator"/>
+                </group>
+                <group string="FaturAqui" name="faturaqui">
+                    <field name="copies"/>
+                    <field name="server_reference"/>
+                    <field name="reason_cancel" readonly="1" attrs="{'invisible': [('state', '!=', 'cancel')]}"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_invoice_line_form" model="ir.ui.view">
+        <field name="name">account.invoice.line.form</field>
+        <field name="model">account.invoice.line</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="account.view_invoice_line_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <group string="AT Fields" name="at_fields">
+                    <field name="tax0_reason_id"/>
+                    <field name="at_unit_price"/>
+                    <field name="at_settlement_amount"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+    <record id="invoice_form_cancel_inherit" model="ir.ui.view">
+        <field name="name">invoice.form.cancel.inherit</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account_cancel.invoice_form_cancel_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_invoice_cancel']" position="replace">
+                <button name="%(action_account_invoice_cancel)d" type="action" states="open" string="Cancel Invoice" groups="account.group_account_invoice"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

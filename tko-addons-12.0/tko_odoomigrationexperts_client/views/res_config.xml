@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="res_config_settings_view_form_odoomigration_experts" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.backup_s3</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="20"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block">
+                    <h2>OdooMigrationExperts</h2>
+                    <div class="o_setting_right_pane">
+                        <div class="content-group">
+                            <div class="mt16 row">
+                                <label for="migrationexpoerts_token" string="Token" style="margin-left: 60px"
+                                       class="col-xs-2 o_light_label"/>
+                                <field name="migrationexpoerts_token" class="input-sm oe_inline"/>
+                                <button name="generate_token" string="Generate Token" type="object"
+                                        class="btn btn-success" style="margin-left: 5px;"/>
+                                 <button name="%(mail.action_email_compose_message_wizard)d" context="{'odoomigrationexperts': 'True'}"
+                                        type="action" string="Send token to OdooMigrationExperts.com" icon="fa-envelope" class="oe_link"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

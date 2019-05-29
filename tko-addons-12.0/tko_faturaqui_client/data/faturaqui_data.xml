@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="faturaqui_main" model="faturaqui">
+            <field name="name">FaturAqui/SATURNPROGRESS - LDA</field>
+            <field name="version">1.0.0</field>
+            <field name="software_certificate_number">2779</field>
+        </record>
+        <record id="faturaqui_saft_monthly" model="faturaqui.saft">
+            <field name="name">Files eFatura</field>
+            <field name="type">m</field>
+        </record>
+        <record id="faturaqui_saft_annual" model="faturaqui.saft">
+            <field name="name">Files SAF-T</field>
+            <field name="type">a</field>
+        </record>
+        <!--Fixed description styling from account-->
+        <record id="account.mt_invoice_created" model="mail.message.subtype">
+            <field name="name">Invoice Created</field>
+            <field name="res_model">account.invoice</field>
+            <field name="default" eval="False"/>
+            <field name="hidden" eval="True"/>
+            <field name="description">Invoice created</field>
+        </record>
+        <record id="mt_invoice_cancelled" model="mail.message.subtype">
+            <field name="name">Invoice cancelled</field>
+            <field name="res_model">account.invoice</field>
+            <field name="default" eval="False"/>
+            <field name="description">Invoice cancelled</field>
+        </record>
+    </data>
+</odoo>
